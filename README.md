@@ -1,5 +1,5 @@
 # tkStrikeDBGen1
-Loading the tkStrike H2 DB with proper information
+Loading the tkStrikeGen1 H2 DB with proper information
 
 Loading the H2 Database
 =======================
