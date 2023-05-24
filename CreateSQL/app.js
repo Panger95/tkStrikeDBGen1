@@ -44,7 +44,6 @@ async function replaceSubcategory() {
     }
     fs.writeFileSync('../Import\ Thresholds\ Gen\ 1/Subcategory.sql', output.trim());
 };
-await replaceSubcategory()
 
 async function replaceGap() {
     let filepath = 'gap.txt';
@@ -80,7 +79,7 @@ async function replaceGap() {
         fs.writeFileSync('../Import\ Thresholds\ Gen\ 1/Default_Gap.sql', final.trim());
     })
 }
-await replaceGap();
+
 
 async function replaceThresholds() {
     const DROP_CATEGORY = 'DROP TABLE IF EXISTS TKS_CATEGORY;';
@@ -113,4 +112,11 @@ async function replaceThresholds() {
         fs.writeFileSync('../Import\ Thresholds\ Gen\ 1/Default_Category_Thresholds.sql', final.trim());
     }
 }
-await replaceThresholds();
+
+async function main() {
+    await replaceSubcategory();
+    await replaceGap();
+    await replaceThresholds();
+}
+
+main();
