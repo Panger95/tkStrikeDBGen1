@@ -21,7 +21,7 @@ public class Windows {
          **/
 
         // Kill tkStrike
-        Runtime.getRuntime().exec("taskkill /F /IM tkStrikeGen1.exe");
+        exeCommand("taskkill", "/F", "/IM", "tkStrikeGen1.exe");
         // Wait for the system to finish the task kill
         Thread.sleep(3000);
         // Replace the subcategory table in the running process thread
@@ -31,7 +31,7 @@ public class Windows {
         // Replace the gap table in the running process thread
         replaceTable("Default_Gap.sql");
         // Open tkStrike
-        executeCommand(getWindowsAppPath());
+        exeCommand(getWindowsAppPath());
     }
 
     // Replace a table using H2 Command Script
@@ -67,7 +67,7 @@ public class Windows {
     }
 
     // Execute commands better and more cleanly
-    private static void executeCommand(String... command) {
+    private static void exeCommand(String... command) {
         try {
             ProcessBuilder processBuilder = new ProcessBuilder(command);
             processBuilder.start();

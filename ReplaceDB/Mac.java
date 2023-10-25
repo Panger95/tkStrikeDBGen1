@@ -21,7 +21,7 @@ public class Mac {
          **/
 
         // Kill tkStrike
-        Runtime.getRuntime().exec("killall tkStrikeGen1");
+        exeCommand("killall", "tkStrikeGen1");
         // Wait for the system to finish the task kill
         Thread.sleep(3000);
         // Replace the subcategory table in the running process thread
@@ -31,7 +31,7 @@ public class Mac {
         // Replace the gap table in the running process thread
         replaceTable("Default_Gap.sql");
         // Open tkStrike
-        executeCommand("open", getMacAppPath());
+        exeCommand("open", getMacAppPath());
     }
 
     // Replace a table using H2 Command Script
@@ -67,7 +67,7 @@ public class Mac {
     }
 
     // Execute commands better and more cleanly
-    private static void executeCommand(String... command) {
+    private static void exeCommand(String... command) {
         try {
             ProcessBuilder processBuilder = new ProcessBuilder(command);
             processBuilder.start();

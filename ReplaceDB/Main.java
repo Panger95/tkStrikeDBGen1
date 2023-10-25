@@ -19,22 +19,22 @@ public class Main {
 
 		if (isMac()) {
 			// Kill tkStrike if it is running
-			Runtime.getRuntime().exec("killall tkStrikeGen1");
+			exeCommand("killall", "tkStrikeGen1");
 			// Wait for the system to finish the task kill
 			Thread.sleep(3000);
 			// Delete the bad tkStrike DB
 			deleteFile(getMacDBPath());
 			// Open tkStrike to reload an original copy of the DB
-			executeCommand("open", getMacAppPath());
+			exeCommand("open", getMacAppPath());
 		} else if (isWindows()) {
 			// Kill tkStrike if it is running
-			Runtime.getRuntime().exec("taskkill /F /IM tkStrikeGen1.exe");
+			exeCommand("taskkill", "/F", "/IM", "tkStrikeGen1.exe");
 			// Wait for the system to finish the task kill
 			Thread.sleep(3000);
 			// Delete the bad tkStrike DB
 			deleteFile(getWindowsDBPath());
 			// Open tkStrike to reload an original copy of the DB
-			executeCommand(getWindowsAppPath());
+			exeCommand(getWindowsAppPath());
 		} else {
 			System.out.println("Unsupported operating system. Only Mac and Windows are supported.");
 		}
@@ -53,7 +53,7 @@ public class Main {
 	}
 
 	// Execute commands better and more cleanly
-	private static void executeCommand(String... command) {
+	private static void exeCommand(String... command) {
 		try {
 			ProcessBuilder processBuilder = new ProcessBuilder(command);
 			processBuilder.start();
