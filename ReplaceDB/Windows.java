@@ -69,6 +69,7 @@ public class Windows {
             ProcessBuilder processBuilder = new ProcessBuilder(command);
             Process process = processBuilder.start();
             process.waitFor();
+            Thread.sleep(3000);
         } catch (Exception e) {
             e.printStackTrace();
         }
