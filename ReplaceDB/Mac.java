@@ -22,8 +22,6 @@ public class Mac {
 
         // Kill tkStrike
         exeCommand("killall", "tkStrikeGen1");
-        // Wait for the system to finish the task kill
-        Thread.sleep(3000);
         // Replace the subcategory table in the running process thread
         replaceTable("Subcategory.sql");
         // Replace the thresholds table in the running process thread
@@ -42,8 +40,7 @@ public class Mac {
             String url = "jdbc:h2:/Users/" + getUsername() + "/.tkStrike/db/tkStrike30";
             String[] command = { "java", "-cp", h2, h2Command, "-url", url, "-user", "SA", "-script",
                     getScriptPath(scriptName) };
-            Process process = new ProcessBuilder(command).start();
-            process.waitFor();
+            exeCommand(command);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -70,7 +67,8 @@ public class Mac {
     private static void exeCommand(String... command) {
         try {
             ProcessBuilder processBuilder = new ProcessBuilder(command);
-            processBuilder.start();
+            Process process = processBuilder.start();
+            process.waitFor();
         } catch (Exception e) {
             e.printStackTrace();
         }
